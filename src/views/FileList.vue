@@ -2,7 +2,7 @@
 export default {
   methods: {
     changeLanguage() {
-      this.$i18n.locale = 'kr'
+      this.$i18n.locale = 'ko'
     }
   }
 }
