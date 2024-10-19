@@ -1,5 +1,9 @@
 <script>
+import api from '../api/api.js'
+import FileItem from '@/views/FileItem.vue'
+
 export default {
+  components: { FileItem },
   data() {
     return {
       headerPinned: false,
@@ -7,11 +11,16 @@ export default {
       scrollHide: true,
 
       scrollY: 0,
-      lastScrollY: 0
+      lastScrollY: 0,
+
+      dataList: []
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    api.getDataList().then(dataList => {
+      this.dataList = dataList
+    })
   },
   i18n: {
     ko: {
@@ -70,6 +79,9 @@ export default {
         {{ headerPinned ? 'Unpin' : 'Pin' }}
       </button>
     </header>
+    <section class="data-list__contents">
+      <file-item v-for="data in dataList" :key="data.id" :file="data" />
+    </section>
   </div>
 </template>
 

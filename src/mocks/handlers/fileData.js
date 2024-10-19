@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { DATA_STATUS } from '@/utils/constants.js'
 
 export const testHandlers = [
-  http.get('test', () => {
+  http.get('data', () => {
     return HttpResponse.json(
       {
         data:
