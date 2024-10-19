@@ -13,8 +13,9 @@ export default {
       default: {
         name : 'file name',
         size : 'file size',
-        time : '1070-01-01 00:00:00',
-        type : 'file type',
+        time : '1970-01-01 00:00:00',
+        status_1 : 0,
+        status_2 : 0,
       }
     }
   },
@@ -25,18 +26,18 @@ export default {
 <li class="file-item">
   <div class="file-item__header">
     <div class="file-item__name">
-
+      {{ this.file.name}}
     </div>
     <div class="file-item__buttons">
-
+      {{ this.file.status}}
     </div>
   </div>
   <div class="file-item__description">
     <div class="file-item__time">
-
+      {{ this.file.time}}
     </div>
     <div class="file-item__size">
-
+      {{ this.file.size}}
     </div>
   </div>
 </li>
