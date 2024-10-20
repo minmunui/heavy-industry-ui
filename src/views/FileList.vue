@@ -27,7 +27,8 @@ export default {
       'Data name': '데이터 이름',
       'Size': '크기',
       'Date': '날짜',
-      'Status': '상태'
+      'Status 1': '1단계 정합',
+      'Status 2': '2단계 정합'
     }
   },
   methods: {
@@ -62,23 +63,34 @@ export default {
 
 <template>
   <div class="data-list">
-    <header class="data-list__header" :style="headerStyle">
-      <h3 class="data-name">
-        {{ $t('Data name') }}
-      </h3>
-      <h3 class="data-size">
-        {{ $t('Size') }}
-      </h3>
-      <h3 class="data-date">
-        {{ $t('Date') }}
-      </h3>
-      <h3 class="buttons">
-        {{ $t('Status') }}
-      </h3>
-      <button class="pin-button" @click="handlePin">
-        {{ headerPinned ? 'Unpin' : 'Pin' }}
-      </button>
-    </header>
+    <div class="header-wrapper" :style="headerStyle">
+      <header class="data-list__header">
+        <div>
+          <h3 class="data-name">
+            {{ $t('Data name') }}
+          </h3>
+          <h3 class="data-size">
+            {{ $t('Size') }}
+          </h3>
+        </div>
+        <div>
+          <h3 class="data-date">
+            {{ $t('Date') }}
+          </h3>
+          <div>
+            <h3 class="status-1">
+              {{ $t('Status 1') }}
+            </h3>
+            <h3 class="status-2">
+              {{ $t('Status 2') }}
+            </h3>
+          </div>
+        </div>
+        <button class="pin-button" @click="handlePin">
+          {{ headerPinned ? 'Unpin' : 'Pin' }}
+        </button>
+      </header>
+    </div>
     <section class="data-list__contents">
       <file-item v-for="data in dataList" :key="data.id" :file="data" />
     </section>
@@ -86,28 +98,88 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+
 .data-list {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  &__header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
-    position: relative;
+  .header-wrapper {
+    width: 100%;
 
-    h3 {
+    .data-list__header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      position: relative;
       width: 100%;
-      text-align: center;
-    }
+      max-width: 1280px;
 
-    .pin-button {
-      position: absolute;
-      right: 10px;
-      height: 2rem;
+      div {
+        width: 100%;
+        display: flex;
+
+        .data-size {
+          width: 50%;
+        }
+      }
+
+      h3 {
+        width: 100%;
+        text-align: center;
+      }
+
+      .pin-button {
+        position: absolute;
+        right: 10px;
+        height: 2rem;
+      }
     }
+  }
+
+  .data-list__contents {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1280px;
+    gap: 1rem;
+  }
+}
+
+
+@media (min-width: 769px) {
+  .header-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  section {
+    padding: 10px 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    display: none;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 2fr;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    grid-template-columns: 1fr;
   }
 }
 
