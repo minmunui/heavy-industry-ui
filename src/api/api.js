@@ -1,8 +1,14 @@
 import axios from 'axios'
 
 export default {
-  getDataList() {
-    return ajax('data', 'GET')
+  getDataList(params) {
+    return ajax('data', 'GET', params)
+  },
+  stitch1(fileName) {
+    return ajax('stitch_step_1', 'POST', { fileName })
+  },
+  stitch2(fileName) {
+    return ajax('stitch_step_2', 'POST', { fileName })
   }
 }
 
