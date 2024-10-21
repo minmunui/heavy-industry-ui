@@ -4,16 +4,16 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiMenuUp } from '@mdi/js';
+import { mdiMenuDown } from '@mdi/js';
 
 export default {
-  name: "sort-icon-up",
+  name: "sort-icon-down",
   components: {
     SvgIcon
   },
   data() {
     return {
-      path: mdiMenuUp,
+      path: mdiMenuDown,
     }
   }
 }
