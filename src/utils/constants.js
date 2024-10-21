@@ -8,6 +8,6 @@ export const DATA_STATUS = {
 
 export const SORTING = {
   NONE: 0,
-  ASCENDING: 1,
-  DESCENDING: 2
+  ASC: 1,
+  DESC: 2
 }

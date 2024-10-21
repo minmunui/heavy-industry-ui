@@ -23,8 +23,8 @@ export default {
 
 <template>
   <sort-icon v-if="sorting===SORTING.NONE" />
-  <sort-icon-up v-if="sorting===SORTING.ASCENDING" />
-  <sort-icon-down v-if="sorting===SORTING.DESCENDING" />
+  <sort-icon-up v-if="sorting===SORTING.ASC" />
+  <sort-icon-down v-if="sorting===SORTING.DESC" />
 </template>
 
 <style scoped>

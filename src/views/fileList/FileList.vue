@@ -13,20 +13,22 @@ export default {
       scrollY: 0,
       lastScrollY: 0,
       dataList: [],
+      sortedDataList: [],
       sorting: {
         name: SORTING.NONE,
-        date: SORTING.NONE
+        time: SORTING.NONE
       },
       filter: {
         name: '',
-        startDate: '',
-        endDate: ''
+        startTime: '',
+        endTime: ''
       }
     }
   },
   mounted() {
     api.getDataList({}).then(dataList => {
       this.dataList = dataList
+      this.sortedDataList = dataList
     })
   },
   i18n: {
@@ -41,17 +43,42 @@ export default {
     }
   },
   methods: {
-    changeLanguage() {
-      this.$i18n.locale = 'ko'
-    },
     changeSorting(columnName) {
       this.sorting[columnName] = (this.sorting[columnName] + 1) % 3
+      if (this.sorting[columnName] === SORTING.NONE) {
+        this.sortedDataList = this.dataList
+        for (const key in this.sorting) {
+          if (key !== columnName) {
+            this.sorting[key] = SORTING.NONE
+          }
+        }
+        return
+      }
+
+      this.sortedDataList = this.dataList.slice().sort((a, b) => {
+        if (this.sorting[columnName] === SORTING.ASC) {
+          return a[columnName] > b[columnName] ? 1 : -1
+        } else {
+          return a[columnName] < b[columnName] ? 1 : -1
+        }
+      })
     },
-    changeFilter(columnName, value) {
-      this.filter[columnName] = value
+    requestFilter() {
+      api.getDataList(this.filter).then(dataList => {
+        this.dataList = dataList
+        this.sortedDataList = dataList
+      })
+    },
+  },
+  computed: {
+    filteredDataList() {
+      return this.dataList.filter(data => {
+        return data.name.includes(this.filter.name) &&
+          data.time >= this.filter.startTime &&
+          data.time <= this.filter.endTime
+      })
     }
   },
-  computed: {}
 }
 </script>
 
@@ -59,13 +86,14 @@ export default {
   <div class="data-list">
     <div class="header-wrapper">
       <table class="data-list__header">
-        <file-list-header :changeSorting="this.changeSorting" :sorting="this.sorting" :filter="this.filter"
+        <file-list-header :changeSorting="this.changeSorting" :sorting="this.sorting" :filter="this.filteredDataList"
                           v-model:name="this.filter.name"
-                          v-model:startDate="this.filter.startDate"
-                          v-model:endDate="this.filter.endDate"
+                          v-model:startTime="this.filter.startTime"
+                          v-model:endTime="this.filter.endTime"
+                          @filter="this.requestFilter"
         />
         <tbody>
-        <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index">
+        <file-item v-for="(data, index) in this.sortedDataList" :file="{...data, index}" :key="index">
         </file-item>
         </tbody>
       </table>

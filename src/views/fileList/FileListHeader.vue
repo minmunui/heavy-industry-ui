@@ -2,6 +2,11 @@
 import ReactSortIcon from '@/views/fileList/ReactSortIcon.vue'
 
 export default {
+  i18n: {
+    ko: {
+      Search : "검색하기"
+    }
+  },
   components: { ReactSortIcon },
   name: 'file-list-header',
   props: {
@@ -14,22 +19,21 @@ export default {
     sorting: {
       type: Object,
       default() {
-        return { name: -1, date: -1 }
+        return { name: -1, time: -1 }
       }
     },
     name: String,
-    startDate: String,
-    endDate: String
+    startTime: String,
+    endTime: String
   },
   methods: {
-    changeDateSorting() {
+    changeTimeSorting() {
       this.$props.changeSorting('name')
     },
     changeNameSorting() {
-      this.$props.changeSorting('date')
+      this.$props.changeSorting('time')
     }
   }
-
 }
 </script>
 
@@ -42,7 +46,7 @@ export default {
     <th class="data-name">
       <div class="header-cell">
         {{ $t('Data name') }}
-        <button class="outline secondary sorting" @click="this.changeDateSorting">
+        <button class="outline secondary sorting" @click="this.changeTimeSorting">
           <react-sort-icon :sorting="this.sorting.name" />
         </button>
       </div>
@@ -54,7 +58,7 @@ export default {
       <div class="header-cell">
         {{ $t('Date') }}
         <button class="outline secondary sorting" @click="this.changeNameSorting">
-          <react-sort-icon :sorting="this.sorting.date" />
+          <react-sort-icon :sorting="this.sorting.time" />
         </button>
       </div>
     </th>
@@ -67,32 +71,39 @@ export default {
   </tr>
   <tr>
     <th>
-      {{ $t('Filter') }}
+      <button class="filter" @click="this.$emit('filter')">
+        {{ $t('Filter') }}
+      </button>
     </th>
     <th>
-      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name"
+      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name" :placeholder="$t('Search')"
              @input="$emit('update:name',$event.target.value)">
     </th>
     <th>
     </th>
     <th class="date-filter">
       <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
-             :value="startDate" @input="$emit('update:startDate', $event.target.value)"> ~
+             :value="startTime" @input="$emit('update:startDate', $event.target.value)"> ~
       <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
-             :value="endDate" @input="$emit('update:endDate', $event.target.value)">
+             :value="endTime" @input="$emit('update:endDate', $event.target.value)">
     </th>
     <th>
-
     </th>
-
     <th>
-
     </th>
   </tr>
   </thead>
 </template>
 
 <style scoped>
+button.filter, button.sorting {
+  padding: 0.25rem 0.5rem;
+  border:1px solid var(--vt-c-text-dark-2);
+
+  &:hover, &:focus {
+    box-shadow : 0 0 0 1px var(--vt-c-text-dark-2);
+  }
+}
 th {
   text-align: center
 }
