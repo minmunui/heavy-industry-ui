@@ -87,7 +87,7 @@ export default {
     color: var(--error-red);
 
     button {
-      background-color: var(--error-red)
+      background-color: var(--error-red);
     }
   }
 
@@ -112,6 +112,7 @@ button {
   font-size: 0.8rem;
   padding: 0.2rem 0.4rem;
   border: none;
+  color: var(--vt-c-text-dark-1);
 
   &:hover, &:focus {
     cursor: pointer;
