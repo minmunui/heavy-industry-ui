@@ -13,11 +13,13 @@ export default {
     },
     sorting: {
       type: Object,
-      default: {
-        name: -1,
-        date: -1
+      default() {
+        return { name: -1, date: -1 }
       }
-    }
+    },
+    name: String,
+    startDate: String,
+    endDate: String
   },
   methods: {
     changeDateSorting() {
@@ -27,6 +29,7 @@ export default {
       this.$props.changeSorting('date')
     }
   }
+
 }
 </script>
 
@@ -40,7 +43,7 @@ export default {
       <div class="header-cell">
         {{ $t('Data name') }}
         <button class="outline secondary sorting" @click="this.changeDateSorting">
-         <react-sort-icon :sorting="this.sorting.name"/>
+          <react-sort-icon :sorting="this.sorting.name" />
         </button>
       </div>
     </th>
@@ -51,7 +54,7 @@ export default {
       <div class="header-cell">
         {{ $t('Date') }}
         <button class="outline secondary sorting" @click="this.changeNameSorting">
-          <react-sort-icon :sorting="this.sorting.date"/>
+          <react-sort-icon :sorting="this.sorting.date" />
         </button>
       </div>
     </th>
@@ -67,13 +70,16 @@ export default {
       {{ $t('Filter') }}
     </th>
     <th>
-      <input class="name-filter" type="search" name="search" id="search" aria-label="Search">
+      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name"
+             @input="$emit('update:name',$event.target.value)">
     </th>
     <th>
     </th>
     <th class="date-filter">
-      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"> ~
-      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local">
+      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
+             :value="startDate" @input="$emit('update:startDate', $event.target.value)"> ~
+      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
+             :value="endDate" @input="$emit('update:endDate', $event.target.value)">
     </th>
     <th>
 
@@ -87,6 +93,9 @@ export default {
 </template>
 
 <style scoped>
+th {
+  text-align: center
+}
 
 .header-cell {
   display: flex;

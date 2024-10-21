@@ -14,11 +14,13 @@ export default {
       lastScrollY: 0,
       dataList: [],
       sorting: {
-        name : SORTING.NONE,
-        date : SORTING.NONE
+        name: SORTING.NONE,
+        date: SORTING.NONE
       },
       filter: {
-
+        name: '',
+        startDate: '',
+        endDate: ''
       }
     }
   },
@@ -44,6 +46,9 @@ export default {
     },
     changeSorting(columnName) {
       this.sorting[columnName] = (this.sorting[columnName] + 1) % 3
+    },
+    changeFilter(columnName, value) {
+      this.filter[columnName] = value
     }
   },
   computed: {}
@@ -54,7 +59,11 @@ export default {
   <div class="data-list">
     <div class="header-wrapper">
       <table class="data-list__header">
-        <file-list-header :changeSorting="this.changeSorting" :sorting="this.sorting"/>
+        <file-list-header :changeSorting="this.changeSorting" :sorting="this.sorting" :filter="this.filter"
+                          v-model:name="this.filter.name"
+                          v-model:startDate="this.filter.startDate"
+                          v-model:endDate="this.filter.endDate"
+        />
         <tbody>
         <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index">
         </file-item>
@@ -78,6 +87,6 @@ th {
 }
 
 button {
-  border : none;
+  border: none;
 }
 </style>
