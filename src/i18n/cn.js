@@ -4,6 +4,7 @@ import statusButton from '@/views/fileList/StatusButton.vue'
 import fileListHeader from '@/views/fileList/FileListHeader.vue'
 import detailView from '@/views/detail/DetailView.vue'
 import mainHeader from '@/components/MainHeader.vue'
+import reactSortIcon from '@/views/fileList/ReactSortIcon.vue'
 
 export const i18nCn = {
   ...fileList.i18n.cn,
@@ -11,5 +12,6 @@ export const i18nCn = {
   ...statusButton.i18n.cn,
   ...fileListHeader.i18n.cn,
   ...detailView.i18n.cn,
-  ...mainHeader.i18n.cn
+  ...mainHeader.i18n.cn,
+  ...reactSortIcon.i18n.cn
 }

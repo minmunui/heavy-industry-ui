@@ -5,7 +5,10 @@ import SettingIcon from '@/components/icons/SettingIcon.vue'
 export default {
   i18n: {
     ko: {
-      Search: '검색하기'
+      Search: '검색하기',
+    },
+    cn: {
+      Search: '搜索',
     }
   },
   components: { SettingIcon, ReactSortIcon },
@@ -149,6 +152,6 @@ div.date-filter {
 }
 
 button.sorting {
-  padding: 0.25rem;
+  padding: 0;
 }
 </style>
