@@ -51,7 +51,7 @@ export default {
 </script>
 
 <template>
-  <header>
+  <header class="main-header">
     <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="bottom">
       <home-icon />
     </router-link>
@@ -72,7 +72,8 @@ h1 {
   border-radius : 1rem;
 }
 
-header {
+header.main-header {
+  width: 100%;
   background-color: var(--color-background);
   display: flex;
   justify-content: space-between;

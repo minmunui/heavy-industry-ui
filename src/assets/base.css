@@ -31,7 +31,7 @@
   --pending-yellow: #EADE54;
   --error-red: #EA3143;
 
-  --global-width: 1400px;
+  --global-width: 100%;
 
 }
 
@@ -113,4 +113,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+button, a, td, time, th {
+  white-space: nowrap;
 }

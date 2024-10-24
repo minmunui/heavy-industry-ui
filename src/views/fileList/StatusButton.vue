@@ -8,27 +8,27 @@ export default {
   i18n: {
     ko: {
       'Uploading...': '업로딩...',
-      READY: '준비됨',
+      'READY': '준비됨',
       'Stitching...': '정합 중...',
-      DONE: '완료',
-      ERROR: '에러',
-      ago: '전',
+      'DONE': '완료',
+      'ERROR': '에러',
+      'ago': '전',
       'Stitch': '정합',
-      open: '열기',
-      log: '로그',
-      retry: '재시도'
+      'open': '열기',
+      'log': '로그',
+      'retry': '재시도'
     },
     cn: {
       'Uploading...': '上传中...',
-      READY: '准备就绪',
+      'READY': '准备就绪',
       'Stitching...': '拼接中...',
-      DONE: '完成',
-      ERROR: '错误',
-      ago: '前',
+      'DONE': '完成',
+      'ERROR': '错误',
+      'ago': '前',
       'Stitch': '拼接',
-      open: '打开',
-      log: '日志',
-      retry: '重试'
+      'open': '打开',
+      'log': '日志',
+      'retry': '重试'
     }
   },
   props: {
@@ -41,6 +41,16 @@ export default {
           data: 'Api error'
         }
       }
+    },
+    fileName: {
+      type:String,
+      required: true,
+      default: 'file'
+    },
+    step: {
+      type: Number,
+      required: true,
+      default: 0
     }
   },
   computed: {
@@ -74,17 +84,17 @@ export default {
   </div>
   <div class="status done" v-if="status.status === DATA_STATUS.DONE">
     {{ $t('DONE') }}
-    <button class="open">
+    <router-link :to="{name:'detail', params:{fileName:this.fileName, step:this.step}}" class="open">
       {{ $t('open') }}
-    </button>
+    </router-link>
   </div>
   <div class="status error" v-if="status.status === DATA_STATUS.ERROR">
     {{ $t('ERROR') }}
     <div class="buttons">
-      <button class="error">
+      <router-link :to="{name : 'error', params:{fileName:this.fileName, step:this.step}}" class="error">
         {{ $t('log') }}
-      </button>
-      <button class="error">
+      </router-link>
+      <button class="error" @click="clickStitch">
         {{ $t('retry') }}
       </button>
     </div>
@@ -107,7 +117,7 @@ export default {
       display: flex;
       gap: 0.25rem;
 
-      button {
+      a, button {
         background-color: var(--error-red);
       }
     }
@@ -116,9 +126,8 @@ export default {
 
   &.ready, &.done {
     color: var(--success-green);
-
-    button {
-      background-color: var(--success-green)
+    a, button {
+      background-color: var(--success-green);
     }
   }
 
@@ -137,6 +146,19 @@ button {
   border: none;
   color: var(--vt-c-text-dark-1);
 
+  &:hover, &:focus {
+    cursor: pointer;
+    box-shadow: 0 0 13px rgba(255, 255, 255, 0.7);
+  }
+}
+
+a {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  color: var(--vt-c-text-dark-1);
+  border-radius: var(--pico-border-radius);
+  font-weight: bold;
   &:hover, &:focus {
     cursor: pointer;
     box-shadow: 0 0 13px rgba(255, 255, 255, 0.7);
