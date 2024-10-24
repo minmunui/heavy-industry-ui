@@ -15,7 +15,8 @@ export default {
       ago: '전',
       'Stitch': '정합',
       open: '열기',
-      log: '로그'
+      log: '로그',
+      retry: '재시도'
     },
     cn: {
       'Uploading...': '上传中...',
@@ -26,7 +27,8 @@ export default {
       ago: '前',
       'Stitch': '拼接',
       open: '打开',
-      log: '日志'
+      log: '日志',
+      retry: '重试'
     }
   },
   props: {
@@ -39,7 +41,7 @@ export default {
           data: 'Api error'
         }
       }
-    },
+    }
   },
   computed: {
     DATA_STATUS() {
@@ -51,7 +53,7 @@ export default {
     clickStitch() {
       this.$emit('stitch')
     }
-  },
+  }
 }
 </script>
 
@@ -78,9 +80,14 @@ export default {
   </div>
   <div class="status error" v-if="status.status === DATA_STATUS.ERROR">
     {{ $t('ERROR') }}
-    <button class="error">
-      {{ $t('log') }}
-    </button>
+    <div class="buttons">
+      <button class="error">
+        {{ $t('log') }}
+      </button>
+      <button class="error">
+        {{ $t('retry') }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -96,9 +103,15 @@ export default {
   &.error {
     color: var(--error-red);
 
-    button {
-      background-color: var(--error-red);
+    .buttons {
+      display: flex;
+      gap: 0.25rem;
+
+      button {
+        background-color: var(--error-red);
+      }
     }
+
   }
 
   &.ready, &.done {
