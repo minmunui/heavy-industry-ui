@@ -27,11 +27,13 @@ export default {
   },
   methods: {
     getMachineInfo() {
-      api.getMachineInfo()
-        .then(response => {
-          this.title = response.data.title
+      api.getServerInfo()
+        .then(res => {
+          this.title = res.title
         })
         .catch(error => {
+
+          console.log('error' + error)
             this.title = this.$t('Server Error')
             this.error = true
           }
