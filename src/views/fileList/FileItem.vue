@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     requestStitch1() {
-      api.requestStitch(this.file.name)
+      api.requestStitch(this.file.name, 1)
         .then(response => {
           console.log(response)
         })
@@ -39,7 +39,7 @@ export default {
         })
     },
     requestStitch2() {
-      api.stitch2(this.file.name)
+      api.requestStitch(this.file.name, 2)
         .then(response => {
           console.log(response)
         })
@@ -59,10 +59,10 @@ export default {
     <td>{{ file.size }}</td>
     <td>{{ file.time }}</td>
     <td>
-      <status-button :status="file.status_1" @stitch="requestStitch1"></status-button>
+      <status-button :status="file.status_1" @stitch="requestStitch1" :file-name="this.$props.file.name" step="1"></status-button>
     </td>
     <td>
-      <status-button :status="file.status_2" @stitch="requestStitch2"></status-button>
+      <status-button :status="file.status_2" @stitch="requestStitch2" :file-name="this.$props.file.name" step="2"></status-button>
     </td>
   </tr>
 </template>

@@ -10,8 +10,11 @@ export default {
   getStitchedImage(fileName, step) {
     return ajax('stitched_image', 'GET', { fileName, step })
   },
-  getMachineInfo() {
-    return ajax('machine_info', 'GET')
+  getServerInfo() {
+    return ajax('server_info', 'GET')
+  },
+  getErrorLog(fileName, step) {
+    return ajax('error_log', 'GET', {fileName, step})
   }
 }
 
