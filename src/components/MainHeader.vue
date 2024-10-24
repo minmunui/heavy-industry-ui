@@ -52,11 +52,11 @@ export default {
 
 <template>
   <header class="main-header">
-    <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="bottom">
+    <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="right">
       <home-icon />
     </router-link>
     <h1 :class="machineNameClass">{{ this.title }}</h1>
-    <router-link :to="{name:'setting'}" class="icon" :data-tooltip="this.$t('Setting')" data-placement="bottom">
+    <router-link :to="{name:'setting'}" class="icon" :data-tooltip="this.$t('Setting')" data-placement="left">
       <setting-icon />
     </router-link>
   </header>
