@@ -5,6 +5,7 @@ import fileListHeader from '@/views/fileList/FileListHeader.vue'
 import detailView from '@/views/detail/DetailView.vue'
 import mainHeader from '@/components/MainHeader.vue'
 import reactSortIcon from '@/views/fileList/ReactSortIcon.vue'
+import languageSetting from '@/views/setting/LanguageSetting.vue'
 
 export const i18nKo = {
   ...fileList.i18n.ko,
@@ -13,5 +14,6 @@ export const i18nKo = {
   ...fileListHeader.i18n.ko,
   ...detailView.i18n.ko,
   ...mainHeader.i18n.ko,
-  ...reactSortIcon.i18n.ko
+  ...reactSortIcon.i18n.ko,
+  ...languageSetting.i18n.ko
 }

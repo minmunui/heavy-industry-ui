@@ -110,10 +110,10 @@ export default {
   }
 
   &.uploading, &.on-progress {
-    color: var(--pending-yellow);
+    color: var(--color-text);
 
     button {
-      background-color: var(--pending-yellow);
+      background-color: var(--color-text);
     }
   }
 }

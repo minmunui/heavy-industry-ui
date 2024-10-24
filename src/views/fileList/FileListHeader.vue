@@ -93,9 +93,6 @@ export default {
              :value="endTime" @input="$emit('update:endDate', $event.target.value)">
     </th>
     <th>
-      <button>
-        <setting-icon />
-      </button>
     </th>
     <th>
     </th>
@@ -118,6 +115,7 @@ th {
 
   &.sticky {
     position: sticky;
+    z-index: 100;
     left: 0;
   }
 }
@@ -141,7 +139,11 @@ div.date-filter {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+input {
+  border: 1px solid var(--color-text);
+  border-radius: 0.25rem;
 }
 
 .name-filter {
@@ -153,5 +155,6 @@ div.date-filter {
 
 button.sorting {
   padding: 0;
+  border: 1px solid var(--vt-c-text-dark-2);
 }
 </style>
