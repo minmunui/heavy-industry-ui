@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-  <div :data-tooltip="this.tooltipMessage" data-placement="bottom">
+  <div :data-tooltip="this.tooltipMessage" data-placement="bottom" class="react-sort-icon">
     <sort-icon v-if="sorting===SORTING.NONE"  />
     <sort-icon-up v-if="sorting===SORTING.ASC" />
     <sort-icon-down v-if="sorting===SORTING.DESC" />
@@ -51,9 +51,10 @@ export default {
 </template>
 
 <style scoped>
-div {
+div.react-sort-icon {
   width: 100%;
   height: 100%;
+  border-bottom: none;
 
   display: flex;
   justify-content: center;
