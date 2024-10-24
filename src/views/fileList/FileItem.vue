@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     requestStitch1() {
-      api.stitch1(this.file.name)
+      api.requestStitch(this.file.name)
         .then(response => {
           console.log(response)
         })
@@ -54,7 +54,7 @@ export default {
 
 <template>
   <tr class="file-item">
-    <td>{{ file.index }}</td>
+    <td class="index"><div class="sticky">{{ file.index }}</div></td>
     <td>{{ file.name }}</td>
     <td>{{ file.size }}</td>
     <td>{{ file.time }}</td>
@@ -68,7 +68,18 @@ export default {
 </template>
 
 <style scoped>
+
 td {
   text-align: center;
+}
+
+td.index {
+  position:sticky;
+  padding: 0;
+  left: 0;
+}
+
+.sticky {
+  position: sticky
 }
 </style>

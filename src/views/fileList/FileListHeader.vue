@@ -1,5 +1,6 @@
 <script>
 import ReactSortIcon from '@/views/fileList/ReactSortIcon.vue'
+import SettingIcon from '@/components/icons/SettingIcon.vue'
 
 export default {
   i18n: {
@@ -7,7 +8,7 @@ export default {
       Search: '검색하기'
     }
   },
-  components: { ReactSortIcon },
+  components: { SettingIcon, ReactSortIcon },
   name: 'file-list-header',
   props: {
     changeSorting: {
@@ -90,7 +91,7 @@ export default {
     </th>
     <th>
       <button>
-
+        <setting-icon />
       </button>
     </th>
     <th>
@@ -113,7 +114,7 @@ th {
   text-align: center;
 
   &.sticky {
-    position:sticky;
+    position: sticky;
     left: 0;
   }
 }

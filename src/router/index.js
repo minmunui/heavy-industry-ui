@@ -6,7 +6,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'main',
-      component: () => import('../views/fileList/FileList.vue')
+      component: () => import('@/views/fileList/FileList.vue')
+    },
+    {
+      path: '/detail/:fileName',
+      name: 'detail',
+      component: () => import('@/views/detail/DetailView.vue'),
+      props: true
+    },
+    {
+      path: '/setting',
+      name: 'setting',
+      component: () => import('@/views/setting/SettingView.vue')
     }
   ],
 })

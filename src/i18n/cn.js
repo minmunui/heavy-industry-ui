@@ -5,11 +5,11 @@ import fileListHeader from '@/views/fileList/FileListHeader.vue'
 import detailView from '@/views/detail/DetailView.vue'
 import mainHeader from '@/components/MainHeader.vue'
 
-export const i18nKo = {
-  ...fileList.i18n.ko,
-  ...fileItem.i18n.ko,
-  ...statusButton.i18n.ko,
-  ...fileListHeader.i18n.ko,
-  ...detailView.i18n.ko,
-  ...mainHeader.i18n.ko
+export const i18nCn = {
+  ...fileList.i18n.cn,
+  ...fileItem.i18n.cn,
+  ...statusButton.i18n.cn,
+  ...fileListHeader.i18n.cn,
+  ...detailView.i18n.cn,
+  ...mainHeader.i18n.cn
 }

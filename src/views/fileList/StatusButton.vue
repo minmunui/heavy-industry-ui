@@ -16,7 +16,17 @@ export default {
       'Stitch': '정합',
       open: '열기',
       log: '로그'
-
+    },
+    cn: {
+      'Uploading...': '上传中...',
+      READY: '准备就绪',
+      'Stitching...': '拼接中...',
+      DONE: '完成',
+      ERROR: '错误',
+      ago: '前',
+      'Stitch': '拼接',
+      open: '打开',
+      log: '日志'
     }
   },
   props: {

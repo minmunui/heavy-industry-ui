@@ -1,12 +1,22 @@
-<script setup>
-import { RouterView } from 'vue-router'
+<script>
+
+
+import { defineComponent } from 'vue'
+import MainHeader from '@/components/MainHeader.vue'
+
+export default defineComponent({
+  components: { MainHeader }
+})
 </script>
 
 <template>
-  <RouterView />
+  <main-header/>
+  <router-view />
 </template>
 
 <style scoped>
+
+
 header {
   line-height: 1.5;
   max-height: 100vh;

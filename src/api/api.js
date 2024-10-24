@@ -4,12 +4,15 @@ export default {
   getDataList(params) {
     return ajax('data', 'GET', params)
   },
-  stitch1(fileName) {
-    return ajax('stitch_step_1', 'POST', { fileName })
+  requestStitch(fileName, step) {
+    return ajax('stitch', 'POST', { fileName, step })
   },
-  stitch2(fileName) {
-    return ajax('stitch_step_2', 'POST', { fileName })
+  getStitchedImage(fileName, step) {
+    return ajax('stitched_image', 'GET', { fileName, step })
   },
+  getMachineInfo() {
+    return ajax('machine_info', 'GET')
+  }
 }
 
 function ajax(url, method, data) {

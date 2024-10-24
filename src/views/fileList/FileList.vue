@@ -40,6 +40,15 @@ export default {
       'Status 1': '1단계 정합',
       'Status 2': '2단계 정합',
       'Filter': '필터'
+    },
+    cn: {
+      'Index': '编号',
+      'Data name': '数据名称',
+      'Size': '大小',
+      'Date': '日期',
+      'Status 1': '1阶段匹配',
+      'Status 2': '2阶段匹配',
+      'Filter': '过滤'
     }
   },
   methods: {
