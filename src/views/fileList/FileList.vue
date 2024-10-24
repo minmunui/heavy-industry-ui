@@ -68,7 +68,7 @@ export default {
         this.dataList = dataList
         this.sortedDataList = dataList
       })
-    },
+    }
   },
   computed: {
     filteredDataList() {
@@ -78,13 +78,13 @@ export default {
           data.time <= this.filter.endTime
       })
     }
-  },
+  }
 }
 </script>
 
 <template>
   <div class="data-list">
-    <div class="header-wrapper">
+    <div class="table-wrapper">
       <table class="data-list__header">
         <file-list-header :changeSorting="this.changeSorting" :sorting="this.sorting" :filter="this.filteredDataList"
                           v-model:name="this.filter.name"
@@ -110,8 +110,13 @@ th {
   white-space: nowrap;
 }
 
-.data-list {
-  width: var(--global-width);
+.data-list{
+  width: 100%;
+  margin: auto;
+  overflow-x: scroll;
+  .table-wrapper {
+    width: var(--global-width);
+  }
 }
 
 button {

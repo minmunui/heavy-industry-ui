@@ -4,7 +4,7 @@ import ReactSortIcon from '@/views/fileList/ReactSortIcon.vue'
 export default {
   i18n: {
     ko: {
-      Search : "검색하기"
+      Search: '검색하기'
     }
   },
   components: { ReactSortIcon },
@@ -40,7 +40,7 @@ export default {
 <template>
   <thead>
   <tr class="data-list__column-name">
-    <th>
+    <th class="sticky">
       {{ $t('Index') }}
     </th>
     <th class="data-name">
@@ -70,13 +70,14 @@ export default {
     </th>
   </tr>
   <tr>
-    <th>
+    <th class="sticky">
       <button class="filter" @click="this.$emit('filter')">
         {{ $t('Filter') }}
       </button>
     </th>
     <th>
-      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name" :placeholder="$t('Search')"
+      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name"
+             :placeholder="$t('Search')"
              @input="$emit('update:name',$event.target.value)">
     </th>
     <th>
@@ -88,6 +89,9 @@ export default {
              :value="endTime" @input="$emit('update:endDate', $event.target.value)">
     </th>
     <th>
+      <button>
+
+      </button>
     </th>
     <th>
     </th>
@@ -98,14 +102,20 @@ export default {
 <style scoped>
 button.filter, button.sorting {
   padding: 0.25rem 0.5rem;
-  border:1px solid var(--vt-c-text-dark-2);
+  border: 1px solid var(--vt-c-text-dark-2);
 
   &:hover, &:focus {
-    box-shadow : 0 0 0 1px var(--vt-c-text-dark-2);
+    box-shadow: 0 0 0 1px var(--vt-c-text-dark-2);
   }
 }
+
 th {
-  text-align: center
+  text-align: center;
+
+  &.sticky {
+    position:sticky;
+    left: 0;
+  }
 }
 
 .header-cell {
