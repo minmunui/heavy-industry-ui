@@ -2,6 +2,10 @@ import { http, HttpResponse } from 'msw'
 import { DATA_STATUS } from '@/utils/constants.js'
 
 export const testHandlers = [
+  http.get('stitched_image', () => {
+    return HttpResponse.json(
+      { data: 'https://picsum.photos/1000/1000' })
+  }),
   http.get('data', () => {
     return HttpResponse.json(
       {
