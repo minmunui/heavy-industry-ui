@@ -1,17 +1,18 @@
 <script>
 import ReactSortIcon from '@/views/fileList/ReactSortIcon.vue'
-import SettingIcon from '@/components/icons/SettingIcon.vue'
 
 export default {
   i18n: {
     ko: {
       Search: '검색하기',
+      Index: '번호'
     },
     cn: {
       Search: '搜索',
+      Index: '编号'
     }
   },
-  components: { SettingIcon, ReactSortIcon },
+  components: { ReactSortIcon },
   name: 'file-list-header',
   props: {
     changeSorting: {
