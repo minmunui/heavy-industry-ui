@@ -7,8 +7,8 @@ export const i18n = createI18n({
   locale: 'ko',
   fallbackLocale: 'en',
   messages: {
-    en: {...i18nEn},
-    ko: {...i18nKo},
-    cn: {...i18nCn}
+    ko: i18nKo,
+    en: i18nEn,
+    cn: i18nCn
   }
 })
