@@ -73,9 +73,9 @@ export default {
       })
     },
     requestFilter() {
-      api.getDataList(this.filter).then(dataList => {
-        this.dataList = dataList
-        this.sortedDataList = dataList
+      api.getDataList(this.filter).then(res => {
+        this.dataList = res
+        this.sortedDataList = res
       })
     }
   },

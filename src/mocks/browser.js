@@ -4,5 +4,5 @@ import { serverHandler } from '@/mocks/handlers/serverData.js'
 
 export const worker = setupWorker(
   ...testHandlers,
-  ...serverHandler
+  ...serverHandler,
 )
