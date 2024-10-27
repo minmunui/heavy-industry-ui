@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_APP_API_URL,
+});
+console.log(`API URL: ${import.meta.env.VITE_APP_API_URL}`);
+
 export default {
   getDataList(params) {
     return ajax('data', 'GET', params)
@@ -12,6 +17,9 @@ export default {
   },
   getServerInfo() {
     return ajax('server_info', 'GET')
+  },
+  postServerInfo(data) {
+    return ajax('server_info', 'POST', data)
   },
   getErrorLog(fileName, step) {
     return ajax('error_log', 'GET', {fileName, step})
@@ -32,24 +40,24 @@ function ajax(url, method, data) {
   }
   if (method === 'GET') {
     return new Promise((resolve, reject) => {
-      axios({
+      axiosInstance({
         url,
         method,
         params: data
       }).then(res => {
-        resolve(res.data.data)
+        resolve(res.data)
       }).catch(err => {
         reject(err)
       })
     })
   }
   return new Promise((resolve, reject) => {
-    axios({
+    axiosInstance({
       url,
       method,
       data
     }).then(res => {
-      resolve(res.data.data)
+      resolve(res.data)
     }).catch(err => {
       reject(err)
     })

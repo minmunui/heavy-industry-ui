@@ -15,9 +15,13 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+
 async function prepareApp() {
-  const { worker } = await import('./mocks/browser.js')
-  return worker.start()
+  if (import.meta.env.VITE_APP_API_MSW === 'true') {
+    const { worker } = await import('./mocks/browser.js')
+    return worker.start()
+  }
+  return Promise.resolve()
 }
 
 const app = createApp(App)
