@@ -26,10 +26,7 @@ export default {
     }
   },
   mounted() {
-    api.getDataList({}).then(dataList => {
-      this.dataList = dataList
-      this.sortedDataList = dataList
-    })
+    this.getDataList()
   },
   i18n: {
     ko: {
@@ -52,6 +49,12 @@ export default {
     }
   },
   methods: {
+    getDataList() {
+      api.getDataList().then(dataList => {
+        this.dataList = dataList.data
+        this.sortedDataList = dataList.data
+      })
+    },
     changeSorting(columnName) {
       this.sorting[columnName] = (this.sorting[columnName] + 1) % 3
       if (this.sorting[columnName] === SORTING.NONE) {
@@ -74,19 +77,19 @@ export default {
     },
     requestFilter() {
       api.getDataList(this.filter).then(res => {
-        this.dataList = res
-        this.sortedDataList = res
+        this.dataList = res.data
+        this.sortedDataList = res.data
       })
     }
   },
   computed: {
-    filteredDataList() {
-      return this.dataList.filter(data => {
-        return data.name.includes(this.filter.name) &&
-          data.time >= this.filter.startTime &&
-          data.time <= this.filter.endTime
-      })
-    }
+    // filteredDataList() {
+    //   return this.dataList.filter(data => {
+    //     return data.name.includes(this.filter.name) &&
+    //       data.time >= this.filter.startTime &&
+    //       data.time <= this.filter.endTime
+    //   })
+    // }
   }
 }
 </script>
@@ -102,7 +105,7 @@ export default {
                           @filter="this.requestFilter"
         />
         <tbody>
-        <file-item v-for="(data, index) in this.sortedDataList" :file="{...data, index}" :key="index">
+        <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index">
         </file-item>
         </tbody>
       </table>

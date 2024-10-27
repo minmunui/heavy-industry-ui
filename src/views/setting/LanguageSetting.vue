@@ -7,8 +7,8 @@ export default {
       language: localStorage.language || 'en',
       serverName: '',
       serverIP: '',
-      serverNameInvalid: "false",
-      serverIPInvalid: "false",
+      serverNameInvalid: 'false',
+      serverIPInvalid: 'false',
       message: ''
     }
   },
@@ -42,21 +42,29 @@ export default {
     },
     getServerInfo() {
       api.getServerInfo().then((res) => {
-        console.log("res", res)
+        console.log('res', res)
         this.serverName = res.title
         this.serverIP = res.ODM_URL
       })
     },
     changeServerInfo(event) {
       // stop the form from submitting
-      if (this.checkInvalid()) return
       event.preventDefault()
-      api.postServerInfo().then(() => {
+      if (this.checkInvalid()) {
+        console.log('invalid')
+        return
+      }
+      api.postServerInfo({ title: this.serverName, ODM_URL: this.serverIP }).then(() => {
         this.message = this.$t('Server Info Changed')
-      }).catch(
-        this.message = this.$t('Server Info Change Failed')
+        this.serverNameInvalid = false
+        this.serverIPInvalid = false
+      }).catch(() => {
+          this.message = this.$t('Server Info Change Failed')
+        this.serverNameInvalid = false
+        this.serverIPInvalid = false
+        }
       )
-
+      window.location.reload()
     },
     checkInvalid() {
       let invalid = false
@@ -105,7 +113,7 @@ export default {
     </div>
 
     <hr />
-    <span :class="`${this.messageClass} message`">{{this.message}}</span>
+    <span :class="`${this.messageClass} message`">{{ this.message }}</span>
     <h3>{{ $t('Change Server Name') }}</h3>
     <form @submit="changeServerInfo">
       <fieldset role="group">
@@ -122,7 +130,7 @@ export default {
         />
         <input type="submit" :value="this.$t('Change')" />
       </fieldset>
-      <small id="invalid-helper">{{this.$t('Value cannot include character "!"')}}</small>
+      <small id="invalid-helper">{{ this.$t('Value cannot include character "!"') }}</small>
     </form>
 
     <hr />
@@ -141,9 +149,9 @@ export default {
           aria-describedby="invalid-helper"
           @focusout="serverIPInvalid = serverIP.includes('!')"
         />
-        <input type="submit" :value="this.$t('Change')"/>
+        <input type="submit" :value="this.$t('Change')" />
       </fieldset>
-      <small id="invalid-helper">{{this.$t('Value cannot include character "!"')}}</small>
+      <small id="invalid-helper">{{ this.$t('Value cannot include character "!"') }}</small>
     </form>
   </div>
 </template>
@@ -170,18 +178,19 @@ input.server-name {
 }
 
 small {
- font-size : 1rem;
+  font-size: 1rem;
 }
 
 .message {
   font-size: 1rem;
   font-weight: bold;
 }
+
 .error {
   color: var(--error-red)
 }
 
 .success {
-  color:var(--success-green)
+  color: var(--success-green)
 }
 </style>
