@@ -5,11 +5,16 @@ export default {
   i18n: {
     ko: {
       Upload: '업로드',
-      Uploading: '업로드 중'
+      Uploading: '업로드 중',
+      'File Upload': '파일 업로드',
+      'Enter data name': '데이터 이름'
+
     },
     cn: {
       Upload: '上传',
-      Uploading: '上传中'
+      Uploading: '上传中',
+      'File Upload': '文件上传',
+      'Enter data name': '输入数据名称'
     }
   },
   name: 'upload-view',
@@ -17,12 +22,12 @@ export default {
     return {
       selectedFiles: [],
       uploadId: '',
-      isUploading: false
+      isUploading: false,
     }
   },
   computed: {
     uploadingClass() {
-      return this.isUploading ? 'uploading skeleton' : ''
+      return this.isUploading ? 'uploading skeleton' : 'outline'
     },
     uploadButton() {
       return this.isUploading ? this.$t('Uploading') : this.$t('Upload')
@@ -76,9 +81,10 @@ export default {
 
 <template>
   <main>
-    <input type="text" v-model="uploadId" placeholder="Enter data name" />
+    <h3> {{this.$t('File Upload')}}</h3>
+    <input type="text" v-model="uploadId" :placeholder="this.$t('Enter data name')" accept=".jpg, .jpeg, .png, .tiff"/>
     <input type="file" @change="onFileChange" multiple />
-    <button :class="uploadingClass" @click="uploadFile">{{ this.uploadButton }}</button>
+    <button :class="uploadingClass" @click="uploadFile" >{{ this.uploadButton }}</button>
   </main>
 </template>
 
@@ -87,5 +93,15 @@ export default {
 .uploading {
   cursor: not-allowed;
   background-color: gray;
+}
+
+input {
+  background-color: var(--color-background-mute);
+  border-radius: 0.5rem;
+}
+
+.outline {
+  border: 1px solid var(--color-text);
+  border-radius: 0.5rem;
 }
 </style>

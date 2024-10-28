@@ -16,7 +16,8 @@ export default {
       'Stitch': '정합',
       'open': '열기',
       'log': '로그',
-      'retry': '재시도'
+      'retry': '재시도',
+      'QUEUED': '대기 중'
     },
     cn: {
       'Uploading...': '上传中...',
@@ -28,7 +29,8 @@ export default {
       'Stitch': '拼接',
       'open': '打开',
       'log': '日志',
-      'retry': '重试'
+      'retry': '重试',
+      'QUEUED': '等待中'
     }
   },
   props: {
@@ -170,7 +172,6 @@ a {
   padding: 0.2rem 0.4rem;
   border: none;
   color: var(--vt-c-text-dark-1);
-  border-radius: var(--pico-border-radius);
   font-weight: bold;
   &:hover, &:focus {
     cursor: pointer;
