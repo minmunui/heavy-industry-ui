@@ -31,10 +31,10 @@ const vuetify = createVuetify({
   directives
 })
 
+app.use(i18n)
 app.use(vuetify)
 
 prepareApp().then(() => {
-  app.use(i18n)
   app.mount('#app')
 
 })
