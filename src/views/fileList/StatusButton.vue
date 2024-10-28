@@ -5,34 +5,6 @@ import { timeAgo } from '@/utils/utils.js'
 export default {
   name: 'status-button',
   emits: ['stitch'],
-  i18n: {
-    ko: {
-      'Uploading...': '업로딩...',
-      'READY': '준비됨',
-      'Stitching...': '정합 중...',
-      'DONE': '완료',
-      'ERROR': '에러',
-      'ago': '전',
-      'Stitch': '정합',
-      'open': '열기',
-      'log': '로그',
-      'retry': '재시도',
-      'QUEUED': '대기 중'
-    },
-    cn: {
-      'Uploading...': '上传中...',
-      'READY': '准备就绪',
-      'Stitching...': '拼接中...',
-      'DONE': '完成',
-      'ERROR': '错误',
-      'ago': '前',
-      'Stitch': '拼接',
-      'open': '打开',
-      'log': '日志',
-      'retry': '重试',
-      'QUEUED': '等待中'
-    }
-  },
   props: {
     status: {
       type: Object,

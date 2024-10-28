@@ -27,18 +27,6 @@ export default {
       default: -1
     }
   },
-  i18n: {
-    ko: {
-      Default: '기본값',
-      Ascending: '오름차순',
-      Descending: '내림차순'
-    },
-    cn: {
-      Default: '默认',
-      Ascending: '升序',
-      Descending: '降序'
-    }
-  },
 }
 </script>
 

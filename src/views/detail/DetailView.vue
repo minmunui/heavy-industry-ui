@@ -30,22 +30,6 @@ import api, { BASE_URL } from '@/api/api.js'
 import axios from 'axios'
 
 export default {
-  i18n: {
-    ko: {
-      'Loading...': '불러오는 중',
-      'Downloading...': '다운로드 중',
-      'File Name': '파일 이름',
-      'File Download': '파일 다운로드',
-      'Download Failed': '파일 다운로드에 실패했습니다.'
-    },
-    cn: {
-      'Loading...': '加载中',
-      'Downloading...': '下载中',
-      'File Name': '文件名',
-      'File Download': '文件下载',
-      'Download Failed': '文件下载失败'
-    }
-  },
   name: 'detail-panel',
   props: {
     fileName: {

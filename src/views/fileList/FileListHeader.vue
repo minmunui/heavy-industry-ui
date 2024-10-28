@@ -2,16 +2,6 @@
 import ReactSortIcon from '@/views/fileList/ReactSortIcon.vue'
 
 export default {
-  i18n: {
-    ko: {
-      Search: '검색하기',
-      Index: '번호'
-    },
-    cn: {
-      Search: '搜索',
-      Index: '编号'
-    }
-  },
   components: { ReactSortIcon },
   name: 'file-list-header',
   props: {

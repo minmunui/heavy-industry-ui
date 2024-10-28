@@ -4,16 +4,7 @@ import DroneIcon from '@/components/icons/DroneIcon.vue'
 export default {
   name: 'NotFoundView',
   components: { DroneIcon },
-  i18n: {
-    ko: {
-      'Page Not Found' : '페이지가 존재하지 않습니다.',
-      'Back to main' : '메인으로'
-    },
-    cn: {
-      'Page Not Found' : '页面不存在',
-      'Back to main' : '返回主页面'
-    }
-  }
+
 }
 </script>
 

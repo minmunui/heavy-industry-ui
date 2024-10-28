@@ -8,20 +8,7 @@ import UploadIcon from '@/components/icons/UploadIcon.vue'
 export default {
   name: 'MainHeader',
   components: { UploadIcon, HomeIcon, SettingIcon },
-  i18n: {
-    ko: {
-      'Server Error': '서버 연결 오류',
-      'Home' : '홈',
-      'Setting' : '설정',
-      'Upload' : '사진 업로드'
-    },
-    cn: {
-      'Server Error': '无法连接到服务器',
-      'Home' : '主页',
-      'Setting' : '设置',
-      'Upload' : '上传图片'
-    }
-  },
+
   data() {
     return {
       title: 'UNKNOWN',

@@ -22,12 +22,6 @@ export default {
       }
     }
   },
-  i18n: {
-    ko: {
-      'images': '장'
-    },
-    en: {}
-  },
   methods: {
     requestStitch1() {
       api.requestStitch(this.file.name, 1)

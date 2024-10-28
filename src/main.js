@@ -34,10 +34,10 @@ const vuetify = createVuetify({
 app.use(vuetify)
 
 prepareApp().then(() => {
+  app.use(i18n)
   app.mount('#app')
-})
 
-app.use(i18n)
+})
 app.use(createPinia())
 app.use(router)
 app.config.globalProperties.$refreshInterval = 5
