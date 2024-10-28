@@ -6,14 +6,14 @@ import MainHeader from '@/components/MainHeader.vue'
 
 export default defineComponent({
   components: { MainHeader },
-  mounted() {
-    if (localStorage.language === null) {
-      localStorage.language = 'en'
-    }
-    else {
-      this.$i18n.locale = localStorage.language
-    }
-  }
+  // mounted() {
+  //   if (localStorage.language === null) {
+  //     localStorage.language = 'en'
+  //   }
+  //   else {
+  //     this.$i18n.locale = localStorage.language
+  //   }
+  // }
 })
 </script>
 
