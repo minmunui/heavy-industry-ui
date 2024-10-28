@@ -3,8 +3,8 @@ import axios from 'axios'
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL
 })
-console.log(`API URL: ${import.meta.env.VITE_APP_API_URL}`)
 
+export const BASE_URL = import.meta.env.VITE_APP_API_URL
 export default {
   getDataList(params) {
     return ajax('data', 'GET', params)
@@ -13,7 +13,7 @@ export default {
     return ajax('stitch', 'POST', { id: fileName, step: step })
   },
   getStitchedImage(fileName, step) {
-    return ajax('stitched_image', 'GET', { fileName, step })
+    return axiosInstance.get(`/stitched_image/${fileName}/${step}`)
   },
   getServerInfo() {
     return ajax('server_info', 'GET')

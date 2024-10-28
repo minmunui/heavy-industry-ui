@@ -31,11 +31,11 @@ export default {
   methods: {
     requestStitch1() {
       api.requestStitch(this.file.name, 1)
-        .then(response => {
-          console.log(response)
+        .then(() => {
+          window.location.reload()
         })
-        .catch(error => {
-          console.log(error)
+        .catch(() => {
+          window.location.reload()
         })
     },
     requestStitch2() {
