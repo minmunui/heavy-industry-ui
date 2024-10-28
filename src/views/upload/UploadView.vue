@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     uploadingClass() {
-      return this.isUploading ? 'uploading' : ''
+      return this.isUploading ? 'uploading skeleton' : ''
     },
     uploadButton() {
       return this.isUploading ? this.$t('Uploading') : this.$t('Upload')
@@ -36,10 +36,12 @@ export default {
       this.isUploading = true
       if (this.selectedFiles.length === 0) {
         alert('Please select at least one file.')
+        this.isUploading = false
         return
       }
       if (this.uploadId.length === 0) {
         alert('Please enter a name.')
+        this.isUploading = false
         return
       }
 

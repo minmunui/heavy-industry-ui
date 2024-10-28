@@ -35,6 +35,25 @@
 
 }
 
+.skeleton {
+  background: linear-gradient(90deg, var(--sea-blue-400), var(--sea-blue-500), var(--sea-blue-300));
+  background-size: 300% 300%;
+  animation: colorWave 2s infinite alternate;
+}
+
+/* 애니메이션 설정 */
+@keyframes colorWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* semantic color variables for this project */
 :root {
   --color-background: var(--vt-c-white);

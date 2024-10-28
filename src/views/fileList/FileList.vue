@@ -22,11 +22,16 @@ export default {
         name: '',
         startTime: '',
         endTime: ''
-      }
+      },
+      timer: null
     }
   },
   mounted() {
+    // 2000ms마다 데이터를 가져옴
     this.getDataList()
+    this.timer = setInterval(() => {
+      this.getDataList()
+    }, this.$refreshInterval * 1000)
   },
   i18n: {
     ko: {
@@ -90,6 +95,14 @@ export default {
     //       data.time <= this.filter.endTime
     //   })
     // }
+  },
+  watch : {
+    "this.$refreshInterval": function() {
+      clearInterval(this.timer)
+      this.timer = setInterval(() => {
+        this.getDataList()
+      }, this.$refreshInterval * 1000)
+    }
   }
 }
 </script>
@@ -122,10 +135,11 @@ th {
   white-space: nowrap;
 }
 
-.data-list{
+.data-list {
   width: 100%;
   margin: auto;
   overflow-x: scroll;
+
   .table-wrapper {
     width: var(--global-width);
   }

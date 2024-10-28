@@ -78,9 +78,15 @@ export default {
       {{ $t('Stitch') }}
     </button>
   </div>
+  <div class = "status on-progress" v-if="status.status === DATA_STATUS.QUEUED">
+    {{ $t('QUEUED') }}
+    <time :datetime="status.data.startedAt">{{ timeAgo(status.data.startedAt) }}</time>
+  </div>
   <div class="status on-progress" v-if="status.status === DATA_STATUS.ONPROGRESS">
     {{ $t('Stitching...') }}
+
     <time :datetime="status.data.startedAt">{{ timeAgo(status.data.startedAt) }}</time>
+    <span>{{Math.floor(status.data.progress)}}%</span>
   </div>
   <div class="status done" v-if="status.status === DATA_STATUS.DONE">
     {{ $t('DONE') }}

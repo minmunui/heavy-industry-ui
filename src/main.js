@@ -40,5 +40,5 @@ prepareApp().then(() => {
 app.use(i18n)
 app.use(createPinia())
 app.use(router)
-
+app.config.globalProperties.$refreshInterval = 5
 
