@@ -6,6 +6,8 @@ import { i18nCn } from '@/i18n/cn.js'
 export const i18n = createI18n({
   locale: 'ko',
   fallbackLocale: 'en',
+  legacy: true,
+  globalInjection: true,
   messages: {
     ko: i18nKo,
     en: i18nEn,
