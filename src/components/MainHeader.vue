@@ -44,8 +44,6 @@ export default {
 
 <template>
   <header class="main-header">
-    <button @click="() =>{this.$i18n.locale = 'en'}">set</button>
-    <button @click="() =>{console.log(this.$i18n.locale)}">console</button>
     <div class="left-side">
     <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="bottom">
       <home-icon />
