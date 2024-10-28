@@ -3,7 +3,8 @@ export const DATA_STATUS = {
   READY: 1,
   ONPROGRESS: 2,
   DONE: 3,
-  ERROR: 4
+  ERROR: 4,
+  QUEUED: 5
 }
 
 export const SORTING = {

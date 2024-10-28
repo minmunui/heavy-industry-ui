@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     uploadingClass() {
-      return this.isUploading ? 'uploading' : ''
+      return this.isUploading ? 'uploading skeleton' : ''
     },
     uploadButton() {
       return this.isUploading ? this.$t('Uploading') : this.$t('Upload')

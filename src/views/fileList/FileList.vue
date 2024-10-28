@@ -26,7 +26,11 @@ export default {
     }
   },
   mounted() {
+    // 2000ms마다 데이터를 가져옴
     this.getDataList()
+    setInterval(() => {
+      this.getDataList()
+    }, this.$refreshInterval * 1000)
   },
   i18n: {
     ko: {
@@ -122,10 +126,11 @@ th {
   white-space: nowrap;
 }
 
-.data-list{
+.data-list {
   width: 100%;
   margin: auto;
   overflow-x: scroll;
+
   .table-wrapper {
     width: var(--global-width);
   }

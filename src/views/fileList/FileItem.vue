@@ -40,11 +40,12 @@ export default {
     },
     requestStitch2() {
       api.requestStitch(this.file.name, 2)
-        .then(response => {
-          console.log(response)
+        .then(() => {
+          window.location.reload()
         })
         .catch(error => {
-          console.log(error)
+          alert(error)
+          window.location.reload()
         })
     }
   }
