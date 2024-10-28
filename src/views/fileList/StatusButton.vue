@@ -124,10 +124,17 @@ export default {
 
   }
 
-  &.ready, &.done {
+  &.done {
     color: var(--success-green);
     a, button {
       background-color: var(--success-green);
+    }
+  }
+
+  &.ready {
+
+    button {
+      border: 1px solid var(--color-text);
     }
   }
 

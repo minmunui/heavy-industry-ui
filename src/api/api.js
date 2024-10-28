@@ -10,7 +10,7 @@ export default {
     return ajax('data', 'GET', params)
   },
   requestStitch(fileName, step) {
-    return ajax('stitch', 'POST', { id:fileName, step:step })
+    return ajax('stitch', 'POST', { id: fileName, step: step })
   },
   getStitchedImage(fileName, step) {
     return ajax('stitched_image', 'GET', { fileName, step })
@@ -24,7 +24,21 @@ export default {
   },
   getErrorLog(fileName, step) {
     return ajax('error_log', 'GET', { fileName, step })
-  }
+  },
+  uploadSingleFile(uploadId, formData) {
+    return axiosInstance.post(`/single_upload/${uploadId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  uploadMultipleFiles(uploadId, formData) {
+    return axiosInstance.post(`/multiple_upload/${uploadId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
 }
 
 function ajax(url, method, data) {
