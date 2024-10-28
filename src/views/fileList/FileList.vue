@@ -41,7 +41,7 @@ export default {
       'Date': '날짜',
       'Status 1': '1단계 정합',
       'Status 2': '2단계 정합',
-      'Filter': '필터'
+      'Filter': '필터적용'
     },
     cn: {
       'Index': '编号',

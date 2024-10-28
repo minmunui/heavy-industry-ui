@@ -86,7 +86,7 @@ export default {
     {{ $t('Stitching...') }}
 
     <time :datetime="status.data.startedAt">{{ timeAgo(status.data.startedAt) }}</time>
-    <span>{{Math.floor(status.data.progress)}}%</span>
+    <span v-if="status.data.progress">{{Math.floor(status.data.progress)}}%</span>
   </div>
   <div class="status done" v-if="status.status === DATA_STATUS.DONE">
     {{ $t('DONE') }}

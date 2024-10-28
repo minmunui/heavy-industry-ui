@@ -23,7 +23,7 @@ export default {
     return ajax('server_info', 'POST', data)
   },
   getErrorLog(fileName, step) {
-    return ajax('error_log', 'GET', { fileName, step })
+    return axiosInstance.get(`/error_log/${fileName}/${step}`)
   },
   uploadSingleFile(uploadId, formData) {
     return axiosInstance.post(`/single_upload/${uploadId}`, formData, {

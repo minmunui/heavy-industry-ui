@@ -37,9 +37,9 @@ export default {
   },
   methods: {
     getErrorLog() {
-      api.getErrorLog().then((res) => {
-        this.errorLog = res.errorLog
-        this.troubleShooting = res.troubleShooting
+      api.getErrorLog(this.$props.fileName, this.$props.step).then((res) => {
+        this.errorLog = res.data.errorLog
+        this.troubleShooting = res.data.troubleShooting
       }).catch(() => {
         this.errorLog = this.$t('Server disconnected')
         this.troubleShooting = this.$t('Check the server connection.')
