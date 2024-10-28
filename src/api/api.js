@@ -10,7 +10,7 @@ export default {
     return ajax('data', 'GET', params)
   },
   requestStitch(fileName, step) {
-    return ajax('stitch', 'POST', { fileName, step })
+    return ajax('stitch', 'POST', { id:fileName, step:step })
   },
   getStitchedImage(fileName, step) {
     return ajax('stitched_image', 'GET', { fileName, step })

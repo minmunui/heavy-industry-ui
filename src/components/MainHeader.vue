@@ -3,20 +3,23 @@ import SettingIcon from '@/components/icons/SettingIcon.vue'
 
 import api from '@/api/api.js'
 import HomeIcon from '@/components/icons/HomeIcon.vue'
+import UploadIcon from '@/components/icons/UploadIcon.vue'
 
 export default {
   name: 'MainHeader',
-  components: { HomeIcon, SettingIcon },
+  components: { UploadIcon, HomeIcon, SettingIcon },
   i18n: {
     ko: {
       'Server Error': '서버 연결 오류',
       'Home' : '홈',
-      'Setting' : '설정'
+      'Setting' : '설정',
+      'Upload' : '사진 업로드'
     },
     cn: {
       'Server Error': '无法连接到服务器',
       'Home' : '主页',
-      'Setting' : '设置'
+      'Setting' : '设置',
+      'Upload' : '上传图片'
     }
   },
   data() {
@@ -54,11 +57,16 @@ export default {
 
 <template>
   <header class="main-header">
-    <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="right">
+    <div class="left-side">
+    <router-link :to="{ name:'main'}" class="icon" :data-tooltip="this.$t('Home')" data-placement="bottom">
       <home-icon />
     </router-link>
+    <router-link :to="{name:'upload'}" class="icon" :data-tooltip="this.$t('Upload')" data-placement="bottom">
+      <upload-icon />
+    </router-link>
+    </div>
     <h1 :class="machineNameClass">{{ this.title }}</h1>
-    <router-link :to="{name:'setting'}" class="icon" :data-tooltip="this.$t('Setting')" data-placement="left">
+    <router-link :to="{name:'setting'}" class="icon" :data-tooltip="this.$t('Setting')" data-placement="bottom">
       <setting-icon />
     </router-link>
   </header>
@@ -83,6 +91,12 @@ header.main-header {
   gap: 1rem;
   padding: 0.5rem;
   white-space: nowrap;
+}
+
+.left-side {
+  display: flex;
+  gap: 1rem;
+  z-index: 2000
 }
 
 .error {

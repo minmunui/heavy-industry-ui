@@ -29,6 +29,11 @@ const router = createRouter({
       path : '/:pathMatch(.*)*',
       name : 'not-found',
       component: () => import('@/views/error/NotFoundView.vue')
+    },
+    {
+      path : '/upload',
+      name : 'upload',
+      component: () => import ('@/views/upload/UploadView.vue')
     }
   ],
 })
