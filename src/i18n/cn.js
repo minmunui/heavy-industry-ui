@@ -10,6 +10,8 @@ export const i18nCn = {
 
   // fileItem
   'images': '张',
+  'Are you sure you want to delete this file?' : '确定要删除这个文件吗？',
+  "Failed to delete file": "删除文件失败",
 
   //statusButton
   'Uploading...': '上传中...',

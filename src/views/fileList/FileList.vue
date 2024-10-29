@@ -98,7 +98,7 @@ export default {
                           @filter="this.requestFilter"
         />
         <tbody>
-        <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index">
+        <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index" @changeData="() => this.getDataList()">
         </file-item>
         </tbody>
       </table>

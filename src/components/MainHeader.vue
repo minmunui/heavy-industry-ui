@@ -33,7 +33,7 @@ export default {
   computed: {
     machineNameClass() {
       return `machine-name ${this.error ? 'error' : ''}`
-    }
+    },
   },
   mounted() {
     this.getMachineInfo()

@@ -39,6 +39,9 @@ export default {
       }
     })
   },
+  deleteFile(fileName) {
+    return ajax(`delete/${fileName}`, 'DELETE')
+  }
 }
 
 function ajax(url, method, data) {

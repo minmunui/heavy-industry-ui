@@ -11,6 +11,8 @@ export const i18nKo = {
 
   //fileItem
   'images': '장',
+  'Delete' : '삭제',
+  "Are you sure you want to delete this item?": '이 데이터를 삭제하시겠습니까?',
 
   //statusButton
   'Uploading...': '업로딩...',
