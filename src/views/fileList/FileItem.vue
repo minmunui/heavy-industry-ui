@@ -66,10 +66,11 @@ export default {
       <div class="sticky">{{ file.index }}</div>
     </td>
     <td class="name">
-      <div class="name-wrapper"><span>{{ file.name }}</span></div>
-      <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile">
-        <delete-icon />
-      </button>
+      <div class="name-wrapper"><span>{{ file.name }}</span>
+        <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile">
+          <delete-icon />
+        </button>
+      </div>
     </td>
     <td>{{ file.size }} {{ this.$t('images') }}</td>
     <td>{{ file.time }}</td>
@@ -100,14 +101,12 @@ td.index {
   position: sticky
 }
 
-.name {
-  display: flex;
-  justify-content: space-between;
-}
 
 .name-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
   span {
     color: var(--pico-h1-color);
     font-weight: bold;
