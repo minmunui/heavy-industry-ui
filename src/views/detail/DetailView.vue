@@ -116,7 +116,6 @@ export default {
 
 <style scoped>
 .detail-view {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,7 +142,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
 }
 
 .loading {
