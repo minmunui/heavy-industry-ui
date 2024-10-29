@@ -4,7 +4,6 @@
       <span class="file-name">{{ this.$t('File Name') }} : {{ fileName }}</span>
       <span class="file-step">{{ this.$t('Step') }} : {{ step }}</span>
     </header>
-    {{typeof(this.step)}}
     <div class="loading skeleton" v-if="isLoading">{{ $t('Loading...') }}</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
@@ -12,7 +11,8 @@
         @click="downloadImage"
         :disabled="isDownloading"
       >
-        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
+        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
+        <!--        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}-->
       </button>
     </div>
     <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
@@ -20,7 +20,7 @@
         {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
       </a>
       <button v-else
-        :disabled="isDownloading"
+              :disabled="isDownloading"
       >
         {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
       </button>
@@ -57,6 +57,10 @@ export default {
   },
   methods: {
     getImage() {
+      if (this.step === 1 || this.step === '1') {
+        this.isLoading = false
+        return
+      }
       api.getStitchedImage(this.fileName, this.step)
         .then((res) => {
           this.images = res.data
