@@ -9,11 +9,14 @@
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
       <button
         :disabled="isDownloading"
-        @click="() => this.openLocalStorage(this.fileName)"
+        v-if = "this.isLoading"
       >
         정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
         <!--        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}-->
       </button>
+      <a v-else :href="this.fileLink">
+        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
+      </a>
     </div>
     <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
       <a v-if="!this.isLoading" :href="this.images.url" download>
@@ -73,8 +76,6 @@ export default {
         })
     },
     openLocalStorage(dirName) {
-      console.log('openLocalStorage:', dirName)
-      console.log(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output`)
       window.open(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output` ,"_blank")
     },
     async downloadImage() {
@@ -115,6 +116,11 @@ export default {
       } finally {
         this.isDownloading = false
       }
+    }
+  },
+  computed : {
+    fileLink() {
+      return `file:///home/crunch/Desktop/stitcher-be/datasets/${this.dirName}/opencv_output`
     }
   }
 }
