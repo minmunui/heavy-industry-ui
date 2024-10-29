@@ -6,6 +6,9 @@ export const axiosInstance = axios.create({
 
 export const BASE_URL = import.meta.env.VITE_APP_API_URL
 export default {
+  getDownloadLink(id, file_name) {
+    return `${BASE_URL}stitched_image/download/${id}/${file_name}`
+  },
   getDataList(params) {
     return ajax('data', 'GET', params)
   },
@@ -41,6 +44,9 @@ export default {
   },
   deleteFile(fileName) {
     return ajax(`delete/${fileName}`, 'DELETE')
+  },
+  getImageDownloadLinks(fileName) {
+    return axiosInstance.get(`/stitched_image/${fileName}/1`)
   }
 }
 

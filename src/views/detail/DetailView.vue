@@ -4,19 +4,14 @@
       <span class="file-name">{{ this.$t('File Name') }} : {{ fileName }}</span>
       <span class="file-step">{{ this.$t('Step') }} : {{ step }}</span>
     </header>
-    <div class="loading skeleton" v-if="isLoading">{{ $t('Loading...') }}</div>
+    <div class="loading skeleton" v-if="this.isLoading">{{ $t('Loading...') }}</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
-      <button
-        :disabled="isDownloading"
-        v-if = "this.isLoading"
-      >
-        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
-        <!--        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}-->
-      </button>
-      <a v-else :href="this.fileLink">
-        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.. 눌러서 확인하세요.
-      </a>
+      <div class="download-links">
+        <a v-for="(image, key) in images" :key="key" :href="this.getDownloadLink(this.fileName, image)" download>
+          {{ $t('File Download') }}
+        </a>
+      </div>
     </div>
     <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
       <a v-if="!this.isLoading" :href="this.images.url" download>
@@ -32,8 +27,7 @@
 </template>
 
 <script>
-import api, { BASE_URL } from '@/api/api.js'
-import axios from 'axios'
+import api from '@/api/api.js'
 
 export default {
   name: 'detail-panel',
@@ -61,7 +55,10 @@ export default {
   methods: {
     getImage() {
       if (this.step === 1 || this.step === '1') {
-        this.isLoading = false
+        api.getImageDownloadLinks(this.fileName).then((res) => {
+          this.images = res.data.url
+          this.isLoading = false
+        })
         return
       }
       api.getStitchedImage(this.fileName, this.step)
@@ -75,52 +72,8 @@ export default {
           this.isLoading = false
         })
     },
-    openLocalStorage(dirName) {
-      window.open(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output` ,"_blank")
-    },
-    async downloadImage() {
-      if (!this.fileName || !this.step) {
-        console.error('파일명 또는 step이 없습니다')
-        return
-      }
-
-      this.isDownloading = true
-      try {
-        // fileName과 step을 모두 포함하도록 URL 수정
-        const response = await axios.get(
-          `${BASE_URL}/stitched_image/download/${this.fileName}/${this.step}`,
-          {
-            responseType: 'blob'
-          }
-        )
-
-        // response.data가 직접 Blob 데이터임
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement('a')
-        link.href = url
-        console.log('response:', response)
-
-        // 파일 확장자는 서버 응답에 따라 조정
-        const extension = this.step === 1 ? 'zip' : 'png'
-        link.setAttribute('download', `${this.fileName}_step${this.step}.${extension}`)
-
-        document.body.appendChild(link)
-        link.click()
-
-        // cleanup
-        document.body.removeChild(link)
-        window.URL.revokeObjectURL(url)
-      } catch (error) {
-        console.error('다운로드 중 에러 발생:', error)
-        alert(this.$t('Download Failed'))
-      } finally {
-        this.isDownloading = false
-      }
-    }
-  },
-  computed : {
-    fileLink() {
-      return `file:///home/crunch/Desktop/stitcher-be/datasets/${this.fileName}/opencv_output`
+    getDownloadLink(fileName, image) {
+      return api.getDownloadLink(fileName, image)
     }
   }
 }
@@ -171,5 +124,11 @@ button {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.download-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 </style>
