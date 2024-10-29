@@ -31,6 +31,7 @@
 <script>
 import api, { BASE_URL } from '@/api/api.js'
 import axios from 'axios'
+import * as path from 'node:path'
 
 export default {
   name: 'detail-panel',
