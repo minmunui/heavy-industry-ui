@@ -8,7 +8,6 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
       <button
-        @click="downloadImage"
         :disabled="isDownloading"
       >
         정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
