@@ -120,7 +120,7 @@ export default {
   },
   computed : {
     fileLink() {
-      return `file:///home/crunch/Desktop/stitcher-be/datasets/${this.dirName}/opencv_output`
+      return `file:///home/crunch/Desktop/stitcher-be/datasets/${this.$props.dirName}/opencv_output`
     }
   }
 }
