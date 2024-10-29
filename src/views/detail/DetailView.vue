@@ -4,9 +4,10 @@
       <span class="file-name">{{ this.$t('File Name') }} : {{ fileName }}</span>
       <span class="file-step">{{ this.$t('Step') }} : {{ step }}</span>
     </header>
+    {{typeof(this.step)}}
     <div class="loading skeleton" v-if="isLoading">{{ $t('Loading...') }}</div>
     <div v-else-if="error">{{ error }}</div>
-    <div v-else-if="step === 1" class="image-viewer">
+    <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
       <button
         @click="downloadImage"
         :disabled="isDownloading"
@@ -14,9 +15,11 @@
         {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
       </button>
     </div>
-    <div v-else-if="step === 2" class="image-viewer">
-      <button
-        @click="downloadImage"
+    <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
+      <a v-if="!this.isLoading" :href="this.images.url" download>
+        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
+      </a>
+      <button v-else
         :disabled="isDownloading"
       >
         {{ isDownloading ? $t('Downloading...') : $t('File Download') }}
