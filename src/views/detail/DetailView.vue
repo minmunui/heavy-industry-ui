@@ -73,6 +73,8 @@ export default {
         })
     },
     openLocalStorage(dirName) {
+      console.log('openLocalStorage:', dirName)
+      console.log(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output`)
       window.open(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output` ,"_blank")
     },
     async downloadImage() {
