@@ -8,6 +8,7 @@ export const i18nKo = {
   'Status 1': '1단계 정합',
   'Status 2': '2단계 정합',
   'Filter': '필터적용',
+  'No data': '데이터 없음',
 
   //fileItem
   'images': '장',

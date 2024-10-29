@@ -7,6 +7,7 @@ export const i18nCn = {
   'Status 1': '1阶段匹配',
   'Status 2': '2阶段匹配',
   'Filter': '过滤',
+  'No data': '无数据',
 
   // fileItem
   'images': '张',

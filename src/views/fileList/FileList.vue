@@ -101,6 +101,7 @@ export default {
         </file-item>
         </tbody>
       </table>
+      <div class="no-data" v-if="this.dataList.length === 0">{{ this.$t('No data') }}</div>
     </div>
   </div>
 </template>
@@ -126,5 +127,11 @@ th {
 
 button {
   border: none;
+}
+
+.no-data {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
 }
 </style>
