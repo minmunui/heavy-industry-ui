@@ -9,6 +9,7 @@
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
       <button
         :disabled="isDownloading"
+        @click="() => this.openLocalStorage(this.fileName)"
       >
         정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
         <!--        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}-->
@@ -30,6 +31,7 @@
 <script>
 import api, { BASE_URL } from '@/api/api.js'
 import axios from 'axios'
+import * as path from 'node:path'
 
 export default {
   name: 'detail-panel',
@@ -70,6 +72,9 @@ export default {
         .finally(() => {
           this.isLoading = false
         })
+    },
+    openLocalStorage(dirName) {
+      window.open(`file:///home/crunch/Desktop/stitcher-be/datasets/${dirName}/opencv_output` ,"_blank")
     },
     async downloadImage() {
       if (!this.fileName || !this.step) {
