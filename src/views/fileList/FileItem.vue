@@ -52,7 +52,7 @@ export default {
             this.$emit('changeData')
           })
           .catch(() => {
-            alert("Failed to delete file")
+            alert('Failed to delete file')
           })
       }
     }
@@ -62,15 +62,24 @@ export default {
 
 <template>
   <tr class="file-item">
-    <td class="index"><div class="sticky">{{ file.index }}</div></td>
-    <td>{{ file.name }} <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile"><delete-icon/></button></td>
-    <td>{{ file.size }} {{ this.$t('images')}}</td>
+    <td class="index">
+      <div class="sticky">{{ file.index }}</div>
+    </td>
+    <td class="name">
+      <div class="name-wrapper"><span>{{ file.name }}</span></div>
+      <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile">
+        <delete-icon />
+      </button>
+    </td>
+    <td>{{ file.size }} {{ this.$t('images') }}</td>
     <td>{{ file.time }}</td>
     <td>
-      <status-button :status="file.status_1" @stitch="requestStitch1" :file-name="this.$props.file.name" step="1"></status-button>
+      <status-button :status="file.status_1" @stitch="requestStitch1" :file-name="this.$props.file.name"
+                     step="1"></status-button>
     </td>
     <td>
-      <status-button :status="file.status_2" @stitch="requestStitch2" :file-name="this.$props.file.name" step="2"></status-button>
+      <status-button :status="file.status_2" @stitch="requestStitch2" :file-name="this.$props.file.name"
+                     step="2"></status-button>
     </td>
   </tr>
 </template>
@@ -82,12 +91,26 @@ td {
 }
 
 td.index {
-  position:sticky;
+  position: sticky;
   padding: 0;
   left: 0;
 }
 
 .sticky {
   position: sticky
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-wrapper {
+  display: flex;
+  align-items: center;
+  span {
+    color: var(--pico-h1-color);
+    font-weight: bold;
+  }
 }
 </style>
