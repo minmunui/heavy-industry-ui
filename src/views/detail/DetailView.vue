@@ -15,7 +15,7 @@
         <!--        {{ isDownloading ? $t('Downloading...') : $t('File Download') }}-->
       </button>
       <a v-else :href="this.fileLink">
-        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.
+        정합 결과는 Sever의 datasets/{{ this.fileName }}/opencv-output/에 저장되어 있습니다.. 눌러서 확인하세요.
       </a>
     </div>
     <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
