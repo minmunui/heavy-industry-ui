@@ -71,5 +71,11 @@ export const i18nKo = {
 
   //notFoundView
   'Page Not Found' : '페이지가 존재하지 않습니다.',
-  'Back to main' : '메인으로'
+  'Back to main' : '메인으로',
+
+  //uploadView
+  'Do not leave this page during upload': '업로드 중에는 이 페이지를 떠나지 마세요',
+  'Files uploaded successfully!': '파일이 성공적으로 업로드되었습니다!',
+  'Uploading' : '업로드 중',
+  'File Upload' : '파일 업로드',
 }

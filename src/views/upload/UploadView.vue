@@ -85,6 +85,7 @@ export default {
     <input type="text" v-model="uploadId" :placeholder="this.$t('Enter data name')" accept=".jpg, .jpeg, .png, .tiff"/>
     <input type="file" @change="onFileChange" multiple />
     <button :class="uploadingClass" @click="uploadFile" >{{ this.uploadButton }}</button>
+    <div v-if="this.isUploading">{{ this.$t('Do not leave this page during upload')}}</div>
   </main>
 </template>
 

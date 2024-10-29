@@ -27,7 +27,6 @@ export default {
     }
   },
   mounted() {
-    // 2000ms마다 데이터를 가져옴
     this.getDataList()
     this.timer = setInterval(() => {
       this.getDataList()
