@@ -9,6 +9,7 @@ export default {
       'File Upload': '파일 업로드',
       'Enter data name': '데이터 이름'
 
+
     },
     cn: {
       Upload: '上传',
@@ -22,7 +23,7 @@ export default {
     return {
       selectedFiles: [],
       uploadId: '',
-      isUploading: false,
+      isUploading: false
     }
   },
   computed: {
@@ -34,22 +35,31 @@ export default {
     }
   },
   methods: {
+    validateInput() {
+      if (this.uploadId.length === 0) {
+        console.log('d')
+        alert(this.$t('Please enter a name'))
+        return false
+      }
+      // input은 -, _를 제외한 특수문자를 포함할 수 없다. 한국어 가능
+      if (!/^[ㄱ-ㅎ가-힣a-zA-Z0-9-_]*$/.test(this.uploadId)) {
+        alert(this.$t('Please enter a valid name'))
+        return false
+      }
+      if (this.selectedFiles.length === 0) {
+        alert(this.$t('Please select at least one file'))
+        return false
+      }
+      return true
+    },
     onFileChange(event) {
       this.selectedFiles = Array.from(event.target.files) // Store selected files in an array
     },
     async uploadFile() {
+      if (!this.validateInput()) {
+        return
+      }
       this.isUploading = true
-      if (this.selectedFiles.length === 0) {
-        alert('Please select at least one file.')
-        this.isUploading = false
-        return
-      }
-      if (this.uploadId.length === 0) {
-        alert('Please enter a name.')
-        this.isUploading = false
-        return
-      }
-
       const formData = new FormData()
       formData.append('total', this.selectedFiles.length)
 
@@ -66,14 +76,15 @@ export default {
         this.selectedFiles.forEach(file => {
           formData.append('files', file) // Append each file to the FormData object
         })
+
+        api.uploadMultipleFiles(this.uploadId, formData).then(() =>
+          alert('Files uploaded successfully!')
+        ).catch(() =>
+          alert('An error occurred while uploading the files.')
+        ).finally(() =>
+          this.isUploading = false
+        )
       }
-      api.uploadMultipleFiles(this.uploadId, formData).then(() =>
-        alert('Files uploaded successfully!')
-      ).catch(() =>
-        alert('An error occurred while uploading the files.')
-      ).finally(() =>
-        this.isUploading = false
-      )
     }
   }
 }
@@ -81,11 +92,11 @@ export default {
 
 <template>
   <main>
-    <h3> {{this.$t('File Upload')}}</h3>
-    <input type="text" v-model="uploadId" :placeholder="this.$t('Enter data name')" accept=".jpg, .jpeg, .png, .tiff"/>
+    <h3> {{ this.$t('File Upload') }}</h3>
+    <input type="text" v-model="uploadId" :placeholder="this.$t('Enter data name')" accept=".jpg, .jpeg, .png, .tiff" />
     <input type="file" @change="onFileChange" multiple />
-    <button :class="uploadingClass" @click="uploadFile" >{{ this.uploadButton }}</button>
-    <div v-if="this.isUploading">{{ this.$t('Do not leave this page during upload')}}</div>
+    <button :class="uploadingClass" @click="uploadFile">{{ this.uploadButton }}</button>
+    <div v-if="this.isUploading">{{ this.$t('Do not leave this page during upload') }}</div>
   </main>
 </template>
 

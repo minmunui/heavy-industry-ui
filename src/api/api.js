@@ -22,7 +22,6 @@ export default {
     return ajax('server_info', 'GET')
   },
   postServerInfo(data) {
-    console.log(`POST server_info with data:`, data)
     return ajax('server_info', 'POST', data)
   },
   getErrorLog(fileName, step) {

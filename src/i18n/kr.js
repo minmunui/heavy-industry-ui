@@ -79,4 +79,7 @@ export const i18nKo = {
   'Files uploaded successfully!': '파일이 성공적으로 업로드되었습니다!',
   'Uploading' : '업로드 중',
   'File Upload' : '파일 업로드',
+  'Please enter a name': '이름을 입력하세요',
+  'Please select at least one file': '파일을 선택하세요',
+  'Please enter a valid name': '유효한 이름을 입력하세요, -, _을 제외한 특수문자와 공백은 포함할 수 없습니다.',
 }
