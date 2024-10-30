@@ -33,54 +33,49 @@ export default {
     }, this.$refreshInterval * 1000)
   },
   methods: {
+    sort() {
+      if (this.sorting.name === SORTING.NONE && this.sorting.time === SORTING.NONE) {
+        this.sortedDataList = this.dataList
+        return
+      }
+      this.sortedDataList = this.dataList.slice().sort((a, b) => {
+          if (this.sorting.name === SORTING.ASC) {
+            return a.name > b.name ? 1 : -1
+          } else if (this.sorting.name === SORTING.DESC) {
+            return a.name < b.name ? 1 : -1
+          }
+          if (this.sorting.time === SORTING.ASC) {
+            return a.time > b.time ? 1 : -1
+          } else if (this.sorting.time === SORTING.DESC) {
+            return a.time < b.time ? 1 : -1
+          }
+        }
+      )
+    },
     getDataList() {
       api.getDataList().then(dataList => {
         this.dataList = dataList.data
-        this.sortedDataList = dataList.data
       })
     },
     changeSorting(columnName) {
       this.sorting[columnName] = (this.sorting[columnName] + 1) % 3
-      if (this.sorting[columnName] === SORTING.NONE) {
-        this.sortedDataList = this.dataList
-        for (const key in this.sorting) {
-          if (key !== columnName) {
-            this.sorting[key] = SORTING.NONE
-          }
-        }
-        return
-      }
-
-      this.sortedDataList = this.dataList.slice().sort((a, b) => {
-        if (this.sorting[columnName] === SORTING.ASC) {
-          return a[columnName] > b[columnName] ? 1 : -1
-        } else {
-          return a[columnName] < b[columnName] ? 1 : -1
-        }
-      })
-    },
-    requestFilter() {
-      api.getDataList(this.filter).then(res => {
-        this.dataList = res.data
-        this.sortedDataList = res.data
-      })
     }
   },
-  computed: {
-    // filteredDataList() {
-    //   return this.dataList.filter(data => {
-    //     return data.name.includes(this.filter.name) &&
-    //       data.time >= this.filter.startTime &&
-    //       data.time <= this.filter.endTime
-    //   })
-    // }
-  },
-  watch : {
-    "this.$refreshInterval": function() {
+  watch: {
+    'this.$refreshInterval': function() {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         this.getDataList()
       }, this.$refreshInterval * 1000)
+    },
+    sorting: {
+      handler() {
+        this.sort()
+      },
+      deep: true
+    },
+    dataList() {
+      this.sort()
     }
   }
 }
@@ -94,10 +89,10 @@ export default {
                           v-model:name="this.filter.name"
                           v-model:startTime="this.filter.startTime"
                           v-model:endTime="this.filter.endTime"
-                          @filter="this.requestFilter"
         />
         <tbody>
-        <file-item v-for="(data, index) in this.dataList" :file="{...data, index}" :key="index" @changeData="() => this.getDataList()">
+        <file-item v-for="(data, index) in this.sortedDataList" :file="{...data, index}" :key="index"
+                   @changeData="() => this.getDataList()">
         </file-item>
         </tbody>
       </table>

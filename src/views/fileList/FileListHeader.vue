@@ -64,30 +64,30 @@ export default {
       {{ $t('Status 2') }}
     </th>
   </tr>
-  <tr>
-    <th class="sticky">
-      <button class="filter" @click="this.$emit('filter')">
-        {{ $t('Filter') }}
-      </button>
-    </th>
-    <th>
-      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name"
-             :placeholder="$t('Search')"
-             @input="$emit('update:name',$event.target.value)">
-    </th>
-    <th>
-    </th>
-    <th class="date-filter">
-      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
-             :value="startTime" @input="$emit('update:startDate', $event.target.value)"> ~
-      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"
-             :value="endTime" @input="$emit('update:endDate', $event.target.value)">
-    </th>
-    <th>
-    </th>
-    <th>
-    </th>
-  </tr>
+<!--  <tr>-->
+<!--    <th class="sticky">-->
+<!--      <button class="filter" @click="this.$emit('filter')">-->
+<!--        {{ $t('Filter') }}-->
+<!--      </button>-->
+<!--    </th>-->
+<!--    <th>-->
+<!--      <input class="name-filter" type="search" name="search" id="search" aria-label="Search" :value="name"-->
+<!--             :placeholder="$t('Search')"-->
+<!--             @input="$emit('update:name',$event.target.value)">-->
+<!--    </th>-->
+<!--    <th>-->
+<!--    </th>-->
+<!--    <th class="date-filter">-->
+<!--      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"-->
+<!--             :value="startTime" @input="$emit('update:startDate', $event.target.value)"> ~-->
+<!--      <input class="date-filter" type="datetime-local" name="date" id="date" aria-label="Datetime local"-->
+<!--             :value="endTime" @input="$emit('update:endDate', $event.target.value)">-->
+<!--    </th>-->
+<!--    <th>-->
+<!--    </th>-->
+<!--    <th>-->
+<!--    </th>-->
+<!--  </tr>-->
   </thead>
 </template>
 
