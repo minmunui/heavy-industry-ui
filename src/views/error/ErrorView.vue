@@ -54,8 +54,6 @@ export default {
     <h1>{{ $t('Error Log') }}</h1>
     <p class="log">{{ errorLog }}</p>
     <hr/>
-    <h3>{{ $t('Trouble Shooting') }}</h3>
-    <p>{{ troubleShooting }}</p>
   </div>
 </template>
 

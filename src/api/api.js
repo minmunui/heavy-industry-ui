@@ -78,18 +78,6 @@ function ajax(url, method, data) {
     })
   }
 
-  // if (method === 'POST') {
-  //   console.log(`POST ${url} with data:`, data)
-  //   return new Promise((resolve, reject) => {
-  //     axiosInstance.post(url, data)
-  //       .then(res => {
-  //         resolve(res.data)
-  //       })
-  //       .catch(err => {
-  //         reject(err)
-  //       })
-  //   })
-  // }
   return new Promise((resolve, reject) => {
     axiosInstance({
       url,
