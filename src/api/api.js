@@ -46,6 +46,9 @@ export default {
   },
   getImageDownloadLinks(fileName) {
     return axiosInstance.get(`/stitched_image/${fileName}/1`)
+  },
+  resetFile(fileName) {
+    return axiosInstance.post(`/reset/${fileName}`)
   }
 }
 

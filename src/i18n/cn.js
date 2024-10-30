@@ -12,7 +12,11 @@ export const i18nCn = {
   // fileItem
   'images': '张',
   'Are you sure you want to delete this file?' : '确定要删除这个文件吗？',
-  "Failed to delete file": "删除文件失败",
+  "Delete": "删除",
+  "Reset": "重置",
+  'Failed to delete file': '删除文件失败',
+  'Failed to reset file': '重置文件失败',
+  'File reset successfully': '文件重置成功',
 
   //statusButton
   'Uploading...': '上传中...',

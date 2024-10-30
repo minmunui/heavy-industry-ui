@@ -2,10 +2,11 @@
 import StatusButton from '@/views/fileList/StatusButton.vue'
 import api from '@/api/api.js'
 import DeleteIcon from '@/components/icons/DeleteIcon.vue'
+import RefreshIcon from '@/components/icons/refreshIcon.vue'
 
 export default {
   name: 'FileItem',
-  components: { DeleteIcon, StatusButton },
+  components: { RefreshIcon, DeleteIcon, StatusButton },
   data() {
     return {}
   },
@@ -52,9 +53,19 @@ export default {
             this.$emit('changeData')
           })
           .catch(() => {
-            alert('Failed to delete file')
+            alert(this.$t('Failed to delete file'))
           })
       }
+    },
+    resetItem() {
+      api.resetFile(this.file.name)
+        .then(() => {
+          alert(this.$t('File reset successfully'))
+          this.$emit('changeData')
+        })
+        .catch(() => {
+          alert(this.$t('Failed to reset file'))
+        })
     }
   }
 }
@@ -67,9 +78,14 @@ export default {
     </td>
     <td class="name">
       <div class="name-wrapper"><span>{{ file.name }}</span>
-        <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile">
-          <delete-icon />
-        </button>
+        <div class="buttons">
+          <button :data-tooltip="this.$t('Delete')" @click="this.deleteFile">
+            <delete-icon />
+          </button>
+          <button :data-tooltip="this.$t('Reset')" @click="this.resetItem">
+            <refresh-icon />
+          </button>
+        </div>
       </div>
     </td>
     <td>{{ file.size }} {{ this.$t('images') }}</td>

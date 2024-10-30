@@ -13,7 +13,11 @@ export const i18nKo = {
   //fileItem
   'images': '장',
   'Delete' : '삭제',
-  "Are you sure you want to delete this item?": '이 데이터를 삭제하시겠습니까?',
+  'Are you sure you want to delete this file?': '이 데이터를 삭제하시겠습니까?',
+  'Reset': '초기화',
+  'Failed to delete file': '삭제에 실패했습니다',
+  'Failed to reset file': '초기화에 실패했습니다',
+  'File reset successfully': '파일이 성공적으로 초기화되었습니다',
 
   //statusButton
   'Uploading...': '업로딩...',
