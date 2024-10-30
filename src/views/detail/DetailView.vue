@@ -8,9 +8,9 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="this.step === 1 || this.step=='1'" class="image-viewer">
       <div class="download-links">
-        <a v-for="(image, key) in images" :key="key" :href="this.getDownloadLink(this.fileName, image)" download>
+        <download-image v-for="(image, key) in images" :key="key" :image="this.getDownloadLink(this.fileName, image)">
           {{ $t('File Download') }}
-        </a>
+        </download-image>
       </div>
     </div>
     <div v-else-if="this.step === 2 || this.step==='2'" class="image-viewer">
@@ -28,9 +28,11 @@
 
 <script>
 import api from '@/api/api.js'
+import DownloadImage from '@/views/detail/DownloadImage.vue'
 
 export default {
   name: 'detail-panel',
+  components: { DownloadImage },
   props: {
     fileName: {
       type: String,
@@ -81,6 +83,7 @@ export default {
 
 <style scoped>
 .detail-view {
+  width:100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,8 +130,9 @@ button:disabled {
 }
 
 .download-links {
+  width:100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 </style>
