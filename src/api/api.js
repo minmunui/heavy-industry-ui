@@ -12,8 +12,13 @@ export default {
   getDataList(params) {
     return ajax('data', 'GET', params)
   },
-  requestStitch(fileName, step) {
-    return ajax('stitch', 'POST', { id: fileName, step: step })
+  requestStitch(fileName, step, size, scan) {
+    if (step === 1) {
+      return ajax('stitch', 'POST', { id: fileName, step: step, size: size, scan: scan })
+    }
+    else {
+      return ajax('stitch', 'POST', { id: fileName, step: step })
+    }
   },
   getStitchedImage(fileName, step) {
     return axiosInstance.get(`/stitched_image/${fileName}/${step}`)

@@ -31,6 +31,10 @@ export const i18nKo = {
   'log': '로그',
   'retry': '재시도',
   'QUEUED': '대기 중',
+  'Max': '최대',
+  'Maximum number of images included in one cluster' : '한 클러스터에 포함된 이미지의 최대 수, 높을 수록 정합이 실패할 확률이 증가합니다',
+  'If you uncheck it, you can get better results, but there is a chance of failure.': '체크를 해제하면 더 좋은 결과를 얻을 수 있지만, \n시간이 오래 걸리며 실패할 확률이 증가합니다.',
+  'Scan option': '스캔',
 
   //fileListHeader
   Search: '검색하기',

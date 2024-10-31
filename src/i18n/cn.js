@@ -30,6 +30,10 @@ export const i18nCn = {
   'log': '日志',
   'retry': '重试',
   'QUEUED': '等待中',
+  'Max': '最大',
+  'Maximum number of images included in one cluster': '一个聚类中包含的最大图像数量',
+  'If you uncheck it, you can get better results, but there is a chance of failure.': '如果取消选中，您可以获得更好的结果，但有失败的可能性。',
+  'Scan option': '扫描选项',
 
 
   Search: '搜索',

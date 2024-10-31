@@ -102,7 +102,9 @@ export default {
 </template>
 
 <style scoped>
-
+.table-wrapper {
+  margin-bottom: 5rem;
+}
 
 th {
   text-align: center;
@@ -112,7 +114,6 @@ th {
 
 .data-list {
   width: 100%;
-  margin: auto;
   overflow-x: scroll;
 
   .table-wrapper {

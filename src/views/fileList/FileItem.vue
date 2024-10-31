@@ -25,8 +25,20 @@ export default {
     }
   },
   methods: {
-    requestStitch1() {
-      api.requestStitch(this.file.name, 1)
+    requestStitch1(size, scan) {
+      if (!size) {
+        size = prompt(this.$t('Please enter the number of images to stitch'))
+        if (!size) {
+          return
+        }
+      }
+      if (scan) {
+        scan = 1
+      }
+      else {
+        scan = 0
+      }
+      api.requestStitch(this.file.name, 1, size, scan)
         .then(() => {
           window.location.reload()
         })
@@ -35,7 +47,7 @@ export default {
         })
     },
     requestStitch2() {
-      api.requestStitch(this.file.name, 2)
+      api.requestStitch(this.file.name, 2, 1, 1)
         .then(() => {
           window.location.reload()
         })
